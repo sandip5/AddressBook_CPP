@@ -88,9 +88,23 @@ void perform_Selected_Operation()
 
 void register_Person_To_Address_Book()
 {
-    person_spc::person person_Details = take_Input_As_Person_Details();
+    std::cout << "Enter How Many Person Contact Details You Want To Add: ";
+    int number_Of_Person;
+    std::cin >> number_Of_Person;
+    std::cin.get();
 
-    g_Address_Book.add_Person(person_Details);
+    std::vector<person_spc::person> person_Contact_Book;
+
+    for(int person_Counter = 0; person_Counter < number_Of_Person; person_Counter++)
+    {
+        if(person_Counter > 0)
+            std::cout << "\nEnter New Person Details..." << std::endl;
+
+        person_spc::person person_Details = take_Input_As_Person_Details();
+        person_Contact_Book.push_back(person_Details);
+    }    
+
+    g_Address_Book.add_Person(person_Contact_Book);
 }
 
 person_spc::person take_Input_As_Person_Details()
@@ -136,11 +150,19 @@ void edit_Person_Details_In_Address_Book()
     int select;
     std::cin >> select;
     std::cin.get();
+
+    std::string edit_Field;
+    std::cout << "Enter Full Name Of Person, For Whom You Want To Edit Details..." << std::endl;
+    std::getline(std::cin, edit_Field);
     
-    g_Address_Book.edit_Person_Details("Sandip Singh", select);
+    g_Address_Book.edit_Person_Details(edit_Field, select);
 }
 
 void delete_Person_From_Address_Book()
 {
-    g_Address_Book.delete_Person("Sandip Singh");
+    std::string edit_Field;
+    std::cout << "Enter Full Name Of Person, For Whom You Want To Delete..." << std::endl;
+    std::getline(std::cin, edit_Field);
+
+    g_Address_Book.delete_Person(edit_Field);
 }
