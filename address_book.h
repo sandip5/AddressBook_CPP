@@ -15,7 +15,10 @@ namespace address_book_spc
         void edit_Person_Details(std::string full_name, int select);
         void delete_Person(std::string full_Name);
         bool check_Duplicate_Entry(std::string full_Name);
-        void sort_By_Person_Name();
+        void sort_As_Per_Name();
+        void sort_As_Per_City();
+        void sort_As_Per_State();
+        void sort_As_Per_Zip();
     };
 
     void address_book::add_Person(person_spc::person person_Details)
@@ -120,7 +123,7 @@ namespace address_book_spc
         return true;
     }
 
-    void address_book::sort_By_Person_Name()
+    void address_book::sort_As_Per_Name()
     {
         person_spc::person temp;
 
@@ -129,7 +132,85 @@ namespace address_book_spc
             int flag = 0;
             for( int person_Index = 0; person_Index < person_Contact_Book.size() - 1 - iterate_In_Book ; person_Index++ )
             {
-                if( person_Contact_Book[person_Index].get_Full_Name() >person_Contact_Book[person_Index + 1].get_Full_Name() )
+                if( person_Contact_Book[person_Index].get_Full_Name() > 
+                    person_Contact_Book[person_Index + 1].get_Full_Name() )
+                {
+                    temp = person_Contact_Book[person_Index];
+                    person_Contact_Book[person_Index] = person_Contact_Book[person_Index + 1];
+                    person_Contact_Book[person_Index + 1] = temp;
+                    flag = 1;
+			    }
+            }
+            if(flag == 0)
+            {
+                break;
+            }
+        }
+    }
+
+    void address_book::sort_As_Per_City()
+    {
+        person_spc::person temp;
+
+        for( int iterate_In_Book = 0; iterate_In_Book < person_Contact_Book.size(); iterate_In_Book++ )
+        {
+            int flag = 0;
+            for( int person_Index = 0; person_Index < person_Contact_Book.size() - 1 - iterate_In_Book ; person_Index++ )
+            {
+                if( person_Contact_Book[person_Index].get_City() > 
+                    person_Contact_Book[person_Index + 1].get_City() )
+                {
+                    temp = person_Contact_Book[person_Index];
+                    person_Contact_Book[person_Index] = person_Contact_Book[person_Index + 1];
+                    person_Contact_Book[person_Index + 1] = temp;
+                    flag = 1;
+			    }
+            }
+            if(flag == 0)
+            {
+                break;
+            }
+        }
+
+    }
+
+    void address_book::sort_As_Per_State()
+    {
+        person_spc::person temp;
+
+        for( int iterate_In_Book = 0; iterate_In_Book < person_Contact_Book.size(); iterate_In_Book++ )
+        {
+            int flag = 0;
+            for( int person_Index = 0; person_Index < person_Contact_Book.size() - 1 - iterate_In_Book ; person_Index++ )
+            {
+                if( person_Contact_Book[person_Index].get_State() > 
+                    person_Contact_Book[person_Index + 1].get_State() )
+                {
+                    temp = person_Contact_Book[person_Index];
+                    person_Contact_Book[person_Index] = person_Contact_Book[person_Index + 1];
+                    person_Contact_Book[person_Index + 1] = temp;
+                    flag = 1;
+			    }
+            }
+            if(flag == 0)
+            {
+                break;
+            }
+        }
+
+    }
+
+    void address_book::sort_As_Per_Zip()
+    {
+        person_spc::person temp;
+
+        for( int iterate_In_Book = 0; iterate_In_Book < person_Contact_Book.size(); iterate_In_Book++ )
+        {
+            int flag = 0;
+            for( int person_Index = 0; person_Index < person_Contact_Book.size() - 1 - iterate_In_Book ; person_Index++ )
+            {
+                if( person_Contact_Book[person_Index].get_Zip() > 
+                    person_Contact_Book[person_Index + 1].get_Zip() )
                 {
                     temp = person_Contact_Book[person_Index];
                     person_Contact_Book[person_Index] = person_Contact_Book[person_Index + 1];

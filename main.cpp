@@ -12,6 +12,7 @@ void edit_Person_Details_In_Address_Book();
 person_spc::person take_Input_As_Person_Details(std::string full_Name);
 void delete_Person_From_Address_Book();
 std::string take_Input_As_Person_Name();
+void sort_Address_Book_Records();
 
 int main()
 {
@@ -80,7 +81,7 @@ void perform_Selected_Operation()
                 delete_Person_From_Address_Book();
                 break;    
             case select_choice::SORT_PERSON_NAME:
-                g_Address_Book.sort_By_Person_Name();
+                sort_Address_Book_Records();
                 break;    
             case select_choice::EXIT:
                 is_Start = true;
@@ -182,4 +183,44 @@ void delete_Person_From_Address_Book()
     std::getline(std::cin, edit_Field);
 
     g_Address_Book.delete_Person(edit_Field);
+}
+
+void sort_Address_Book_Records()
+{
+    std::cout << "Enter Selection According To Which Person(s) Detail Or Field You Want To Sort." << std::endl;
+    std::cout << "1. Sort Address Book Record According To Person(s) Name.\n" <<
+                "2. Sort Address Book Record According To Person(s) City.\n" <<
+                "3. Sort Address Book Record According To Person(s) State.\n" <<
+                "4. Sort Address Book Record According To Person(s) Zip.\n" << std::endl;
+
+    int choice;
+    std::cin >> choice;
+    std::cin.get();
+
+    enum sort_choice
+    {
+        SORT_BY_PERSON_NAME,
+        SORT_BY_CITY,
+        SORT_BY_STATE,
+        SORT_BY_ZIP
+    };
+        
+    switch (choice - 1)
+    {
+        case sort_choice::SORT_BY_PERSON_NAME:
+            g_Address_Book.sort_As_Per_Name();
+            break;
+        case sort_choice::SORT_BY_CITY:
+            g_Address_Book.sort_As_Per_City();
+            break;
+        case sort_choice::SORT_BY_STATE:
+            g_Address_Book.sort_As_Per_State();
+            break;
+        case sort_choice::SORT_BY_ZIP:
+            g_Address_Book.sort_As_Per_Zip();
+            break;        
+        default:
+            std::cout << "Invalid Input, Try Again..." << std::endl;
+            break;
+    }
 }
