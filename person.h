@@ -8,12 +8,13 @@ namespace person_spc
         std::string address;
         std::string city;
         std::string state;
-        long zip;
-        long phone_Number;
+        std::string zip;
+        std::string phone_Number;
 
     public:
+        person(){};
         person(std::string full_Name, std::string address, 
-            std::string city, std::string state, long zip, long phone_Number);
+                std::string city, std::string state, std::string zip, std::string phone_Number);
         std::string get_Full_Name();
         void set_Address(std::string address);
         std::string get_Address();
@@ -21,14 +22,14 @@ namespace person_spc
         std::string get_City();
         void set_State(std::string state);
         std::string get_State();
-        void set_Zip(long zip);
-        long get_Zip();
-        void set_Phone_Number(long phone_Number);
-        long get_Phone_Number();  
+        void set_Zip(std::string zip);
+        std::string get_Zip();
+        void set_Phone_Number(std::string phone_Number);
+        std::string get_Phone_Number();  
     };
 
     person::person(std::string full_Name, std::string address, 
-            std::string city, std::string state, long zip, long phone_Number)
+            std::string city, std::string state, std::string zip, std::string phone_Number)
     {
         this -> full_Name = full_Name;
         this -> address = address;
@@ -73,22 +74,22 @@ namespace person_spc
         return state;
     }
 
-    void person::set_Zip(long zip)
+    void person::set_Zip(std::string zip)
     {
         this -> zip = zip;
     }
 
-    long person::get_Zip()
+    std::string person::get_Zip()
     {
         return zip;
     }
 
-    void person::set_Phone_Number(long phone_Number)
+    void person::set_Phone_Number(std::string phone_Number)
     {
         this -> phone_Number = phone_Number;
     }
 
-    long person::get_Phone_Number()
+    std::string person::get_Phone_Number()
     {
         return phone_Number;
     }
