@@ -10,18 +10,16 @@ namespace address_book_spc
         std::vector<person_spc::person> person_Contact_Book;
 
     public:
-        void add_Person(std::vector<person_spc::person> person_Contact_Book);
+        void add_Person(person_spc::person person_Details);
         void display_Person_Details();
         void edit_Person_Details(std::string full_name, int select);
         void delete_Person(std::string full_Name);
+        bool check_Duplicate_Entry(std::string full_Name);
     };
 
-    void address_book::add_Person(std::vector<person_spc::person> person_Contact_Book)
+    void address_book::add_Person(person_spc::person person_Details)
     {
-        for(person_spc::person it : person_Contact_Book)
-        {
-            this -> person_Contact_Book.push_back(it);
-        }    
+        this -> person_Contact_Book.push_back(person_Details);   
     }
 
     void address_book::display_Person_Details()
@@ -104,6 +102,21 @@ namespace address_book_spc
             }
             position++;
         }    
+    }
+
+    bool address_book::check_Duplicate_Entry(std::string full_Name)
+    {
+        int position = 0;
+        for(person_spc::person person_Details : person_Contact_Book)
+        {
+            if(person_Contact_Book[position].get_Full_Name() == full_Name)
+            {
+                std::cout << "Duplicate Entry Not Allowed..." << std::endl;
+                return false;
+            }
+        }
+
+        return true;
     }
 }
 
