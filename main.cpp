@@ -10,6 +10,7 @@ void register_Person_To_Address_Book();
 void display_Persons_From_Address_Book();
 void edit_Person_Details_In_Address_Book();
 person_spc::person take_Input_As_Person_Details();
+void delete_Person_From_Address_Book();
 
 int main()
 {
@@ -29,8 +30,9 @@ void display_Menu()
     std::cout << "Select Option Which Operation Do You Want To Perform..." << std::endl;
     std::cout << "1. Add New Person Details, To Save Details Of Person In Address Book Directory.\n" <<
                  "2. Display All Person Details From Address Book Directory.\n" <<
-                 "3. Edit Person(s) Details In Address Book Directory.\n" <<
-                "4. Close Address Book." << std::endl;
+                 "3. Edit Person Details In Address Book Directory.\n" <<
+                 "4. Delete Person From Address Book Directory By Using Person Full Name.\n"
+                "5. Close Address Book." << std::endl;
 }
 
 int select_Menu_Option()
@@ -51,6 +53,7 @@ void perform_Selected_Operation()
         ADD_NEW_PERSON,
         DISPLAY_ALL_PERSON_DETAILS,
         EDIT_PERSON_DETAILS,
+        DELETE_PERSON,
         EXIT
     };
 
@@ -70,6 +73,9 @@ void perform_Selected_Operation()
             case select_choice::EDIT_PERSON_DETAILS:
                 edit_Person_Details_In_Address_Book();
                 break;
+            case select_choice::DELETE_PERSON:
+                delete_Person_From_Address_Book();
+                break;    
             case select_choice::EXIT:
                 is_Start = true;
                 break;
@@ -132,4 +138,9 @@ void edit_Person_Details_In_Address_Book()
     std::cin.get();
     
     g_Address_Book.edit_Person_Details("Sandip Singh", select);
+}
+
+void delete_Person_From_Address_Book()
+{
+    g_Address_Book.delete_Person("Sandip Singh");
 }
