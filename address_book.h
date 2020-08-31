@@ -19,6 +19,7 @@ namespace address_book_spc
         void sort_As_Per_City();
         void sort_As_Per_State();
         void sort_As_Per_Zip();
+        void search_Person_BY_City_And_State(std::string city, std::string state);
     };
 
     void address_book::add_Person(person_spc::person person_Details)
@@ -222,6 +223,17 @@ namespace address_book_spc
             {
                 break;
             }
+        }
+    }
+
+    void address_book::search_Person_BY_City_And_State(std::string city, std::string state)
+    {
+        for(person_spc::person it : person_Contact_Book)
+        {
+            if(it.get_City() == city && it.get_State() == state)
+                std::cout << "Person Name: " << it.get_Full_Name() << " " << "City: " << it.get_City() << " " <<
+                    "State: " << it.get_State() << "Zip: " << it.get_Zip() << " "
+                         << "Phone Number" << it.get_Phone_Number() << std::endl;
         }
     }
 }
