@@ -33,7 +33,8 @@ void display_Menu()
                  "2. Display All Person Details From Address Book Directory.\n" <<
                  "3. Edit Person Details In Address Book Directory.\n" <<
                  "4. Delete Person From Address Book Directory By Using Person Full Name.\n"
-                "5. Close Address Book." << std::endl;
+                 "5. Sort All Person Record According To Alphabetical Order In Address Book.\n" <<
+                "6. Close Address Book." << std::endl;
 }
 
 int select_Menu_Option()
@@ -55,6 +56,7 @@ void perform_Selected_Operation()
         DISPLAY_ALL_PERSON_DETAILS,
         EDIT_PERSON_DETAILS,
         DELETE_PERSON,
+        SORT_PERSON_NAME,
         EXIT
     };
 
@@ -76,6 +78,9 @@ void perform_Selected_Operation()
                 break;
             case select_choice::DELETE_PERSON:
                 delete_Person_From_Address_Book();
+                break;    
+            case select_choice::SORT_PERSON_NAME:
+                g_Address_Book.sort_By_Person_Name();
                 break;    
             case select_choice::EXIT:
                 is_Start = true;
