@@ -7,78 +7,140 @@ namespace address_book_spc
 {
     class address_book
     {
-        std::vector<person_spc::person> person_Contact_Book;
+        person_spc::person person_Details;
+
     public:
-        void add_Person();
-        void set_Person_Details_In_Book(std::vector<person_spc::person> &person_Contact_Book);
-        std::vector<person_spc::person> get_Person_Details_From_Book();
+        void add_Person(person_spc::person &person_Details);
+        void set_Person_Details_In_Book(person_spc::person &person_Details);
+        person_spc::person get_Person_Details_From_Book();
         void display_Person_Details();
+        void edit_Person_Details(std::string full_name, int select);
+        void edit_Address();
+        void edit_City();
+        void edit_State();
+        void edit_Zip();
+        void edit_Phone_Number();
     };
 
-    void address_book::set_Person_Details_In_Book(std::vector<person_spc::person> &person_Contact_Book)
+    void address_book::set_Person_Details_In_Book(person_spc::person &person_Details)
     {
-        this -> person_Contact_Book = person_Contact_Book;
+        this -> person_Details = person_Details;
     }
 
-    std::vector<person_spc::person> address_book::get_Person_Details_From_Book()
+    person_spc::person address_book::get_Person_Details_From_Book()
     {
-        return person_Contact_Book;
+        return person_Details;
     }
 
-    void address_book::add_Person()
+    void address_book::add_Person(person_spc::person &person_Details)
     {
-        std::cout << "Enter How Many Person Contact Details You Want To Add: ";
-        int number_Of_Person;
-        std::cin >> number_Of_Person;
-
-        std::vector<person_spc::person> person_Contact_Book;
-
-        for(int person_Counter = 0; person_Counter < number_Of_Person; person_Counter++)
-        {
-            if(person_Counter > 0)
-            {
-                std::cout << "Enter Next Person Details: " << std::endl;
-            }
-
-            std::cin.ignore(1,'\n');
-            std::cout << "Enter Full Name Of Person: ";
-            std::string full_Name;
-            std::getline (std::cin, full_Name);
-            std::cout << "Enter Address Of Person: ";
-            std::string address;
-            std::getline (std::cin, address);
-            std::string city;
-            std::cout << "Enter City Of Person: ";
-            std::getline (std::cin, city);
-            std::string state;
-            std::cout << "Enter State Of Person: ";
-            std::getline (std::cin, state);
-            long zip;
-            std::cout << "Enter Zip Of Person: ";
-            std::cin >> zip;
-            long phone_Number;
-            std::cout << "Enter Mobile Number Of Person: ";
-            std::cin >> phone_Number;
-
-            person_spc::person person(full_Name, address, city, state, zip, phone_Number);
-
-            person_Contact_Book.push_back(person);
-        }
-
-        address_book::set_Person_Details_In_Book(person_Contact_Book);
+        address_book::set_Person_Details_In_Book(person_Details);
     }
 
     void address_book::display_Person_Details()
     {
-        for(person_spc::person display : person_Contact_Book)
-        {
-            std::cout << "*---------------Address Book All Person Details---------------------*" << std::endl;
-            std::cout << "Person Full Name: " << display.get_Full_Name() << std::endl;
-            std::cout << "Person Address: " << display.get_Address() << std::endl;
-            std::cout << "Person City: " << display.get_City() << std::endl;
-            std::cout << "Person State: " << display.get_State() << std::endl;
-            std::cout << "Person Zip: " << display.get_Zip() << std::endl;
-            std::cout << "Person Phone Number: " << display.get_Phone_Number() << std::endl;
-        }
+        std::cout << "*---------------Address Book All Person Details---------------------*" << std::endl;
+        std::cout << "Person Full Name   : " << person_Details.get_Full_Name() << std::endl;
+        std::cout << "Person Address     : " << person_Details.get_Address() << std::endl;
+        std::cout << "Person City        : " << person_Details.get_City() << std::endl;
+        std::cout << "Person State       : " << person_Details.get_State() << std::endl;
+        std::cout << "Person Zip         : " << person_Details.get_Zip() << std::endl;
+        std::cout << "Person Phone Number: " << person_Details.get_Phone_Number() << std::endl;
     }
+
+    void address_book::edit_Person_Details(std::string full_Name, int select)
+    {
+        enum edit_person
+        {
+            EDIT_ADDRESS,
+            EDIT_CITY,
+            EDIT_STATE,
+            EDIT_ZIP,
+            EDIT_PHONE_NUMBER
+        };
+
+        if(person_Details.get_Full_Name() == full_Name)
+        {
+            switch (select - 1)
+            {
+                case edit_person::EDIT_ADDRESS:
+                {
+                    edit_Address();
+                    break;
+                }
+                case edit_person::EDIT_CITY:
+                {
+                    edit_City();
+                    break;
+                }
+                case edit_person::EDIT_STATE:
+                {
+                    edit_State();
+                    break;
+                }
+                case edit_person::EDIT_ZIP:
+                {
+                    edit_Zip();
+                    break;
+                }
+                case edit_person::EDIT_PHONE_NUMBER:
+                {      
+                    edit_Phone_Number();
+                    break;
+                }
+                default:
+                    std::cout << "Invalid Selection..." << std::endl;
+                }
+            }
+        }
+
+    void address_book::edit_Address()
+    {
+        std::cout << "Address Of " << person_Details.get_Full_Name() << " Is " << person_Details.get_Address() << std::endl;
+        std::cout << "Enter New Address Which You Want To Replace With Previous Address: " << std::endl;
+        std::string edit_Statement;
+        std::getline(std::cin, edit_Statement);
+        person_Details.set_Address(edit_Statement);
+        std::cout << "New Address Of " << person_Details.get_Full_Name() << " Is " << person_Details.get_Address() << std::endl;
+    }
+
+    void address_book::edit_City()
+    {
+        std::cout << "City Of " << person_Details.get_Full_Name() << " Is " << person_Details.get_City() << std::endl;
+        std::cout << "Enter New City Which You Want To Replace With Previous City: " << std::endl;
+        std::string edit_Statement;
+        std::getline(std::cin, edit_Statement);
+        person_Details.set_City(edit_Statement);
+        std::cout << "New City Of " << person_Details.get_Full_Name() << " Is " << person_Details.get_City() << std::endl;
+    }
+    
+    void address_book::edit_State()
+    {
+        std::cout << "State Of " << person_Details.get_Full_Name() << "Is " << person_Details.get_State() << std::endl;
+        std::cout << "Enter New State Which You Want To Replace With Previous State: " << std::endl;
+        std::string edit_Statement;
+        std::getline(std::cin, edit_Statement);
+        person_Details.set_State(edit_Statement);
+        std::cout << "New State Of " << person_Details.get_Full_Name() << " Is " << person_Details.get_State() << std::endl;
+    }
+
+    void address_book::edit_Zip()
+    {
+        std::cout << "Zip Of " << person_Details.get_Full_Name() << " Is " << person_Details.get_Zip() << std::endl;
+        std::cout << "Enter New Zip Which You Want To Replace With Previous Zip: " << std::endl;
+        std::string edit_Statement;
+        std::getline(std::cin, edit_Statement);
+        person_Details.set_Zip(edit_Statement);
+        std::cout << "New Zip Of " << person_Details.get_Full_Name() << " Is " << person_Details.get_Zip() << std::endl;
+    }
+
+    void address_book::edit_Phone_Number()
+    {
+        std::cout << "Phone Number Of " << person_Details.get_Full_Name() << " Is " << person_Details.get_Phone_Number() << std::endl;
+        std::cout << "Enter New Phone Number Which You Want To Replace With Previous Phone Number : " << std::endl;
+        std::string edit_Statement;
+        std::getline(std::cin, edit_Statement);
+        person_Details.set_Phone_Number(edit_Statement);
+        std::cout << "New Address Of " << person_Details.get_Full_Name() << " Is " << person_Details.get_Phone_Number() << std::endl;
+    }           
 }
