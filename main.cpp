@@ -1,6 +1,6 @@
 #include "address_book.h"
 
-address_book_spc::address_book g_Address_Book;
+address_book g_Address_Book;
 
 void show_Welcome_Msg();
 void display_Menu();
@@ -9,7 +9,7 @@ void perform_Selected_Operation();
 void register_Person_To_Address_Book();
 void display_Persons_From_Address_Book();
 void edit_Person_Details_In_Address_Book();
-person_spc::person take_Input_As_Person_Details(std::string full_Name);
+person take_Input_As_Person_Details(std::string full_Name);
 void delete_Person_From_Address_Book();
 std::string take_Input_As_Person_Name();
 void sort_Address_Book_Records();
@@ -121,7 +121,7 @@ void register_Person_To_Address_Book()
         bool check_Duplicates = g_Address_Book.check_Duplicate_Entry(full_Name);
         if(check_Duplicates)
         {
-            person_spc::person person_Details = take_Input_As_Person_Details(full_Name);
+            person person_Details = take_Input_As_Person_Details(full_Name);
             g_Address_Book.add_Person(person_Details);
         }
         else
@@ -141,31 +141,36 @@ std::string take_Input_As_Person_Name()
     return full_Name;
 } 
 
-person_spc::person take_Input_As_Person_Details(std::string full_Name)
+person take_Input_As_Person_Details(std::string full_Name)
 {
-        std::cout << "Enter Address Of Person: ";
-        std::string address;
-        std::getline (std::cin, address);
+    person person_Details(full_Name);
+
+    std::cout << "Enter Address Of Person: ";
+    std::string address;
+    std::getline (std::cin, address);
+    person_Details.set_Address(address);
     
-        std::string city;
-        std::cout << "Enter City Of Person: ";
-        std::getline (std::cin, city);
+    std::string city;
+    std::cout << "Enter City Of Person: ";
+    std::getline (std::cin, city);
+    person_Details.set_City(city);
     
-        std::string state;
-        std::cout << "Enter State Of Person: ";
-        std::getline (std::cin, state);
+    std::string state;
+    std::cout << "Enter State Of Person: ";
+    std::getline (std::cin, state);
+    person_Details.set_State(state);
     
-        std::string zip;
-        std::cout << "Enter Zip Of Person: ";
-        std::getline (std::cin, zip);
+    std::string zip;
+    std::cout << "Enter Zip Of Person: ";
+    std::getline (std::cin, zip);
+    person_Details.set_Zip(zip);
    
-        std::string phone_Number;
-        std::cout << "Enter Mobile Number Of Person: ";
-        std::getline (std::cin, phone_Number);
+    std::string phone_Number;
+    std::cout << "Enter Mobile Number Of Person: ";
+    std::getline (std::cin, phone_Number);
+    person_Details.set_Phone_Number(phone_Number);
 
-        person_spc::person person_Details(full_Name, address, city, state, zip, phone_Number);
-
-        return person_Details;
+    return person_Details;
 }
 
 void display_Persons_From_Address_Book()
