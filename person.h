@@ -22,18 +22,18 @@ public:
     void set_Zip(std::string zip);
     std::string get_Zip();
     void set_Phone_Number(std::string phone_Number);
-    std::string get_Phone_Number();  
+    std::string get_Phone_Number();
 };
 
 person::person(std::string full_Name)
 {
-    this -> full_Name = full_Name;
-    this -> address = address;
-    this -> city = city;
-    this -> state = state;
-    this -> zip = zip;
-    this -> phone_Number = phone_Number;
-}        
+    this->full_Name = full_Name;
+    this->address = address;
+    this->city = city;
+    this->state = state;
+    this->zip = zip;
+    this->phone_Number = phone_Number;
+}
 
 std::string person::get_Full_Name()
 {
@@ -42,7 +42,7 @@ std::string person::get_Full_Name()
 
 void person::set_Address(std::string address)
 {
-    this -> address = address;
+    this->address = address;
 }
 
 std::string person::get_Address()
@@ -52,7 +52,7 @@ std::string person::get_Address()
 
 void person::set_City(std::string city)
 {
-    this -> city = city;
+    this->city = city;
 }
 
 std::string person::get_City()
@@ -62,7 +62,7 @@ std::string person::get_City()
 
 void person::set_State(std::string state)
 {
-    this -> state = state;
+    this->state = state;
 }
 
 std::string person::get_State()
@@ -72,7 +72,7 @@ std::string person::get_State()
 
 void person::set_Zip(std::string zip)
 {
-    this -> zip = zip;
+    this->zip = zip;
 }
 
 std::string person::get_Zip()
@@ -82,7 +82,7 @@ std::string person::get_Zip()
 
 void person::set_Phone_Number(std::string phone_Number)
 {
-    this -> phone_Number = phone_Number;
+    this->phone_Number = phone_Number;
 }
 
 std::string person::get_Phone_Number()
