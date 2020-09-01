@@ -20,6 +20,7 @@ namespace address_book_spc
         void sort_As_Per_State();
         void sort_As_Per_Zip();
         void search_Person_BY_City_And_State(std::string city, std::string state);
+        void search_Person_BY_City_Or_State(std::string city_Or_State_Name);
     };
 
     void address_book::add_Person(person_spc::person person_Details)
@@ -231,6 +232,17 @@ namespace address_book_spc
         for(person_spc::person it : person_Contact_Book)
         {
             if(it.get_City() == city && it.get_State() == state)
+                std::cout << "Person Name: " << it.get_Full_Name() << " " << "City: " << it.get_City() << " " <<
+                    "State: " << it.get_State() << "Zip: " << it.get_Zip() << " "
+                         << "Phone Number" << it.get_Phone_Number() << std::endl;
+        }
+    }
+
+    void address_book::search_Person_BY_City_Or_State(std::string city_Or_State_Name)
+    {
+         for(person_spc::person it : person_Contact_Book)
+        {
+            if(it.get_City() == city_Or_State_Name || it.get_State() == city_Or_State_Name)
                 std::cout << "Person Name: " << it.get_Full_Name() << " " << "City: " << it.get_City() << " " <<
                     "State: " << it.get_State() << "Zip: " << it.get_Zip() << " "
                          << "Phone Number" << it.get_Phone_Number() << std::endl;

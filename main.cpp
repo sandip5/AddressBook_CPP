@@ -14,6 +14,7 @@ void delete_Person_From_Address_Book();
 std::string take_Input_As_Person_Name();
 void sort_Address_Book_Records();
 void search_Person_By_City_And_State();
+void search_Person_By_City_Or_State();
 
 int main()
 {
@@ -37,7 +38,8 @@ void display_Menu()
                  "4. Delete Person From Address Book Directory By Using Person Full Name.\n"
                  "5. Sort All Person Record According To Alphabetical Order In Address Book.\n" <<
                  "6. Search Person Record By City And State Both.\n" <<
-                "7. Close Address Book." << std::endl;
+                 "7. Search Person Record By City Or State Both.\n" <<
+                "8. Close Address Book." << std::endl;
 }
 
 int select_Menu_Option()
@@ -61,6 +63,7 @@ void perform_Selected_Operation()
         DELETE_PERSON,
         SORT_PERSON_NAME,
         SEARCH_CITY_AND_STATE,
+        SEARCH_CITY_OR_STATE,
         EXIT
     };
 
@@ -88,7 +91,10 @@ void perform_Selected_Operation()
                 break;
             case select_choice::SEARCH_CITY_AND_STATE:
                 search_Person_By_City_And_State();
-                break;        
+                break;
+            case select_choice::SEARCH_CITY_OR_STATE:
+                search_Person_By_City_Or_State();
+                break;            
             case select_choice::EXIT:
                 is_Start = true;
                 break;
@@ -242,4 +248,13 @@ void search_Person_By_City_And_State()
     std::getline(std::cin, state_Name);
 
     g_Address_Book.search_Person_BY_City_And_State(city_Name, state_Name);
+}
+
+void search_Person_By_City_Or_State()
+{
+    std::cout << "Enter City Or State Name: ";
+    std::string city_Or_State_Name;
+    std::getline(std::cin, city_Or_State_Name);
+
+    g_Address_Book.search_Person_BY_City_Or_State(city_Or_State_Name);
 }
