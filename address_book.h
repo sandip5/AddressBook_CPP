@@ -118,6 +118,7 @@ bool address_book::check_Duplicate_Entry(std::string full_Name)
             std::cout << "Duplicate Entry Not Allowed..." << std::endl;
             return false;
         }
+        position++;
     }
 
     return true;

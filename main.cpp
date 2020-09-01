@@ -36,7 +36,7 @@ void display_Menu()
               << "2. Display All Person Details From Address Book Directory.\n"
               << "3. Edit Person Details In Address Book Directory.\n"
               << "4. Delete Person From Address Book Directory By Using Person Full Name.\n"
-                 "5. Sort All Person Record According To Alphabetical Order In Address Book.\n"
+              << "5. Sort All Person Record According To Alphabetical Order In Address Book.\n"
               << "6. Search Person Record By City And State Both.\n"
               << "7. Search Person Record By City Or State Both.\n"
               << "8. Close Address Book." << std::endl;
@@ -126,7 +126,8 @@ void register_Person_To_Address_Book()
         }
         else
         {
-            break;
+            std::cout << "Try Again With Unique Name..." << std::endl;
+            person_Counter = person_Counter - 1;
         }
     }
 }
