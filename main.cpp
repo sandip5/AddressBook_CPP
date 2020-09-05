@@ -1,3 +1,4 @@
+#include <stdlib.h>
 #include "address_book.h"
 
 address_book g_Address_Book;
@@ -39,7 +40,8 @@ void display_Menu()
               << "5. Sort All Person Record According To Alphabetical Order In Address Book.\n"
               << "6. Search Person Record By City And State Both.\n"
               << "7. Search Person Record By City Or State Both.\n"
-              << "8. Close Address Book." << std::endl;
+              << "8. Clear Screen\n"
+              << "9. Close Address Book." << std::endl;
 }
 
 int select_Menu_Option()
@@ -64,6 +66,7 @@ void perform_Selected_Operation()
         SORT_PERSON_NAME,
         SEARCH_CITY_AND_STATE,
         SEARCH_CITY_OR_STATE,
+        CLEAR_SCREEN,
         EXIT
     };
 
@@ -95,6 +98,9 @@ void perform_Selected_Operation()
         case select_choice::SEARCH_CITY_OR_STATE:
             search_Person_By_City_Or_State();
             break;
+        case select_choice::CLEAR_SCREEN:
+            system("cls");
+            break;    
         case select_choice::EXIT:
             is_Start = true;
             break;
@@ -134,7 +140,6 @@ void register_Person_To_Address_Book()
 
 std::string take_Input_As_Person_Name()
 {
-
     std::cout << "Enter Full Name Of Person: ";
     std::string full_Name;
     std::getline(std::cin, full_Name);

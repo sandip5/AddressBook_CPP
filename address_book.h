@@ -28,15 +28,16 @@ void address_book::add_Person(person person_Details)
 
 void address_book::display_Person_Details()
 {
+    std::cout << "\n*---------------Address Book All Person Details---------------------*\n" << std::endl;
+
     for (person display : person_Contact_Book)
     {
-        std::cout << "*---------------Address Book All Person Details---------------------*" << std::endl;
         std::cout << "Person Full Name   : " << display.get_Full_Name() << std::endl;
         std::cout << "Person Address     : " << display.get_Address() << std::endl;
         std::cout << "Person City        : " << display.get_City() << std::endl;
         std::cout << "Person State       : " << display.get_State() << std::endl;
         std::cout << "Person Zip         : " << display.get_Zip() << std::endl;
-        std::cout << "Person Phone Number: " << display.get_Phone_Number() << std::endl;
+        std::cout << "Person Phone Number: " << display.get_Phone_Number() << "\n"<< std::endl;
     }
 }
 
@@ -243,7 +244,8 @@ void address_book::search_Person_BY_City_Or_State(std::string city_Or_State_Name
         if (it.get_City() == city_Or_State_Name || it.get_State() == city_Or_State_Name)
             std::cout << "Person Name: " << it.get_Full_Name() << " "
                       << "City: " << it.get_City() << " "
-                      << "State: " << it.get_State() << "Zip: " << it.get_Zip() << " "
+                      << "State: " << it.get_State() 
+                      << "Zip: " << it.get_Zip() << " "
                       << "Phone Number" << it.get_Phone_Number() << std::endl;
     }
 }
