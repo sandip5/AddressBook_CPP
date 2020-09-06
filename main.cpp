@@ -3,6 +3,10 @@
 
 address_book g_Address_Book;
 
+std::string file_Path ="address_book.csv";
+std::string header[] = {"Full Name", "Address", "City", "State", "Zip", "Phone Number"};
+int total_Header_Fields = 6;
+
 void show_Welcome_Msg();
 void display_Menu();
 int select_Menu_Option();
@@ -16,10 +20,14 @@ std::string take_Input_As_Person_Name();
 void sort_Address_Book_Records();
 void search_Person_By_City_And_State();
 void search_Person_By_City_Or_State();
+void check_File_Exist_If_Not_Then_Create_With_Header();
+void write_Address_Book_Details_Into_File();
+void read_Csv_Data_Store_Into_Address_Book();
 
 int main()
 {
     show_Welcome_Msg();
+    check_File_Exist_If_Not_Then_Create_With_Header();
     perform_Selected_Operation();
 
     return 0;
@@ -41,7 +49,9 @@ void display_Menu()
               << "6. Search Person Record By City And State Both.\n"
               << "7. Search Person Record By City Or State Both.\n"
               << "8. Clear Screen\n"
-              << "9. Close Address Book." << std::endl;
+              << "9. Write Address Book Details Into CSV File.\n"
+              << "10. Read CSV File\n"
+              << "11. Close Address Book." << std::endl;
 }
 
 int select_Menu_Option()
@@ -67,6 +77,8 @@ void perform_Selected_Operation()
         SEARCH_CITY_AND_STATE,
         SEARCH_CITY_OR_STATE,
         CLEAR_SCREEN,
+        WRITE_INTO_FILE,
+        READ_FILE,
         EXIT
     };
 
@@ -100,7 +112,13 @@ void perform_Selected_Operation()
             break;
         case select_choice::CLEAR_SCREEN:
             system("cls");
-            break;    
+            break;
+        case select_choice::WRITE_INTO_FILE:
+            write_Address_Book_Details_Into_File();
+            break;
+        case select_choice::READ_FILE:
+            read_Csv_Data_Store_Into_Address_Book();
+            break;
         case select_choice::EXIT:
             is_Start = true;
             break;
@@ -269,4 +287,19 @@ void search_Person_By_City_Or_State()
     std::getline(std::cin, city_Or_State_Name);
 
     g_Address_Book.search_Person_BY_City_Or_State(city_Or_State_Name);
+}
+
+void check_File_Exist_If_Not_Then_Create_With_Header()
+{
+    g_Address_Book.if_Csv_File_Not_Found_Create_New_File(file_Path, header, total_Header_Fields);
+}
+
+void write_Address_Book_Details_Into_File()
+{
+    g_Address_Book.write_Into_Csv_From_Contact_Book(file_Path, total_Header_Fields);
+}
+
+void read_Csv_Data_Store_Into_Address_Book()
+{
+    g_Address_Book.read_Csv_File();
 }

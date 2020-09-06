@@ -1,4 +1,5 @@
 #include <iostream>
+#include <unordered_map>
 
 class person
 {
@@ -8,84 +9,60 @@ class person
     std::string state;
     std::string zip;
     std::string phone_Number;
+    std::unordered_map<int, std::string> person_detail_pair;
 
 public:
     person(){};
     person(std::string full_Name);
-    std::string get_Full_Name();
     void set_Address(std::string address);
-    std::string get_Address();
     void set_City(std::string city);
-    std::string get_City();
     void set_State(std::string state);
-    std::string get_State();
     void set_Zip(std::string zip);
-    std::string get_Zip();
     void set_Phone_Number(std::string phone_Number);
-    std::string get_Phone_Number();
+    std::unordered_map<int, std::string> get_Mapping_Details();
+    void set_Mapping_Details(std::unordered_map<int, std::string> detail_pair)
+    {
+        this -> person_detail_pair = detail_pair;
+    }
 };
 
 person::person(std::string full_Name)
 {
     this->full_Name = full_Name;
-    this->address = address;
-    this->city = city;
-    this->state = state;
-    this->zip = zip;
-    this->phone_Number = phone_Number;
-}
-
-std::string person::get_Full_Name()
-{
-    return full_Name;
+    person_detail_pair[0] = this -> full_Name;
 }
 
 void person::set_Address(std::string address)
 {
     this->address = address;
-}
-
-std::string person::get_Address()
-{
-    return address;
+    person_detail_pair[1] = this -> address;
 }
 
 void person::set_City(std::string city)
 {
     this->city = city;
-}
-
-std::string person::get_City()
-{
-    return city;
+     person_detail_pair[2] = this -> city;
 }
 
 void person::set_State(std::string state)
 {
     this->state = state;
-}
-
-std::string person::get_State()
-{
-    return state;
+    person_detail_pair[3] = this -> state;
 }
 
 void person::set_Zip(std::string zip)
 {
     this->zip = zip;
-}
-
-std::string person::get_Zip()
-{
-    return zip;
+    person_detail_pair[4] = this -> zip;
 }
 
 void person::set_Phone_Number(std::string phone_Number)
 {
     this->phone_Number = phone_Number;
+    person_detail_pair[5] = this -> phone_Number;
 }
 
-std::string person::get_Phone_Number()
+std::unordered_map<int, std::string> person::get_Mapping_Details()
 {
-    return phone_Number;
+    return person_detail_pair;
 }
